@@ -265,6 +265,8 @@ HTML은 form을 통해서 사용자와 커뮤니케이션할 수 있는 기능�
 
 **prompt**
 
+입력값이 같으면 true, 다르면 false를 리턴한다.
+
 ```
 <!DOCTYPE html>
 <html>
