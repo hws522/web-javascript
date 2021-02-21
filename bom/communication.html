@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>communication</title>
+</head>
+<body>
+    <input type="button" value="alert" onclick="alertFunc()" />
+    
+    <input type="button" value="confirm" onclick="confirmFunc()" />
+
+    <input type="button" value="prompt" onclick="promptFunc()" />
+
+
+    <script> //경고창을 실행하는 동안은 그다음 로직이 실행되지 않는다.(prompt, confirm 마찬가지.)
+
+        function alertFunc(){
+            alert(1);
+            alert(2);
+            alert(3);
+        }
+
+        function confirmFunc(){
+            if(confirm("ok?")){
+                alert("ok");
+            }
+            else{
+                alert("cancel");
+            }
+        }
+
+        function promptFunc(){
+            if(prompt("id?") === "seo"){
+                alert("welcome");
+            }
+            else{
+                alert("fail");
+            }
+        }
+        
+
+    </script>
+</body>
+</html>

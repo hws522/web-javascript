@@ -220,3 +220,65 @@ Window 객체는 식별자 window를 통해서 얻을 수 있다. 또한 생략 
 ```
 
 예제를 통해서 알 수 있는 것은 전역변수와 함수가 사실은 window 객체의 프로퍼티와 메소드라는 것이다. 또한 모든 객체는 사실 window에 소속되어 있다는 것도 알 수 있다. 이러한 특성을 ECMAScript에서는 Global 객체라고 부른다. ECMAScript의 Global 객체는 호스트 환경에 따라서 이름이 다르고 하는 역할이 조금씩 다르다. 웹브라우저 자바스크립트에서 Window 객체는 ECMAScript의 전역객체이면서 동시에 웹브라우저의 창이나 프레임을 제어하는 역할을 한다.
+
+<br>
+
+### **사용자와의 커뮤니케이션**
+---
+
+HTML은 form을 통해서 사용자와 커뮤니케이션할 수 있는 기능을 제공한다. 자바스크립트에는 사용자와 정보를 주고 받을 수 있는 간편한 수단을 제공한다.
+
+**alert**
+
+경고창이라고 부른다. 사용자에게 정보를 제공하거나 디버깅등의 용도로 많이 사용한다. 최근에는 개발자도구의 console.log를 주로 사용함.
+
+```
+<!DOCTYPE html>
+<html>
+    <body>
+        <input type="button" value="alert" onclick="alert('hello world');" />
+    </body>
+</html>
+```
+
+**confirm**
+
+확인을 누르면 true, 취소를 누르면 false를 리턴한다.
+
+```
+<!DOCTYPE html>
+<html>
+    <body>
+        <input type="button" value="confirm" onclick="func_confirm()" />
+        <script>
+            function func_confirm(){
+                if(confirm('ok?')){
+                    alert('ok');
+                } else {
+                    alert('cancel');
+                }
+            }
+        </script>
+    </body>
+</html>
+```
+
+**prompt**
+
+```
+<!DOCTYPE html>
+<html>
+    <body>
+        <input type="button" value="prompt" onclick="func_prompt()" />
+        <script>
+            function func_prompt(){
+                if(prompt('id?') === 'egoing'){
+                    alert('welcome');
+                } else {
+                    alert('fail');
+                }
+            }
+        </script>
+    </body>
+</html>
+```
