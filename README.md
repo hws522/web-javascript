@@ -7,6 +7,7 @@
 ---
 JavaScript로 웹페이지를 제어하기 위해서는 JavaScript를 로드해야 한다.
 
+<br>
 
 
 **Inline**
@@ -100,6 +101,9 @@ window.onload = function(){} 함수는 웹브라우저의 모든 구성요소에
 
 웹브라우저의 구성요소들은 하나하나가 객체화되어 있다. 자바스크립트로 이 객체를 제어해서 웹브라우저를 제어할 수 있게 된다. 이 객체들은 서로 계층적인 관계로 구조화되어 있다. BOM과 DOM은 이 구조를 구성하고 있는 가장 큰 틀의 분류라고 할 수 있다.
 
+<br>
+
+
 **JavaScript Core**
 
 JavaScript 언어 자체에 정의되어 있는 객체들. 
@@ -170,6 +174,8 @@ Document 객체의 프로퍼티는 문서 내의 주요 엘리먼트에 접근�
 ---
 Window 객체는 모든 객체가 소속된 객체이고, 전역객체이면서, 창이나 프레임을 의미한다. 
 
+<br>
+
 **전역객체**
 
 Window 객체는 식별자 window를 통해서 얻을 수 있다. 또한 생략 가능하다. Window 객체의 메소드인 alert을 호출하는 방법은 아래와 같다.
@@ -228,6 +234,9 @@ Window 객체는 식별자 window를 통해서 얻을 수 있다. 또한 생략 
 
 HTML은 form을 통해서 사용자와 커뮤니케이션할 수 있는 기능을 제공한다. 자바스크립트에는 사용자와 정보를 주고 받을 수 있는 간편한 수단을 제공한다.
 
+<br>
+
+
 **alert**
 
 경고창이라고 부른다. 사용자에게 정보를 제공하거나 디버깅등의 용도로 많이 사용한다. 최근에는 개발자도구의 console.log를 주로 사용함.
@@ -284,3 +293,54 @@ HTML은 form을 통해서 사용자와 커뮤니케이션할 수 있는 기능�
     </body>
 </html>
 ```
+
+<br>
+
+### **Location 객체**
+---
+
+Location 객체는 문서의 주소와 관련된 객체로 Window 객체의 프로퍼티다. 이 객체를 이용해서 윈도우의 문서 URL을 변경할 수 있고, 문서의 위치와 관련해서 다양한 정보를 얻을 수 있다.
+
+
+<br>
+
+
+**현재 window의 URL 알아내기**
+
+아래는 현재 윈도우의 문서가 위치하는 URL을 알아내는 방법이다. `location.href`가 더 선호되는 방법이다.
+
+```
+console.log(location.toString(), location.href);
+```
+
+**URL Parsing**
+
+location 객체는 URL을 의미에 따라서 별도의 프로퍼티로 제공하고 있다.
+
+```
+console.log(location.protocol, location.host, location.port, location.pathname, location.search, location.hash);
+```
+
+**URL 변경하기**
+
+아래 코드는 현재 문서를 `http://seo.net`으로 이동한다.
+
+```
+location.href = "http://seo.net";
+```
+
+아래와 같은 방법도 같은 효과를 낸다. 하지만 `location.href`가 더 명시적이다.
+
+```
+location = "http://seo.net";
+```
+
+아래는 현재 문서를 리로드하는 간편한 방법을 제공한다.
+
+```
+location.reload();
+```
+
+
+
+
