@@ -732,3 +732,80 @@ jQuery( document ).ready(function( $ ) {
   $('body').prepend('<h1>Hello world</h1>');
 });
 ```
+
+<br>
+
+### **제어 대상 찾기(jQuery)**
+
+---
+
+jQuery를 이용하면 DOM을 사용하는 것 보다 훨씬 효율적으로 필요한 객체를 조회할 수 있다. jQuery는 객체를 조회할 때 CSS 선택자를 이용한다.
+
+<br>
+
+**jQuery의 기본문법**
+
+jquery의 기본 문법은 단순하고 강력하다.
+
+## **$('li').css('color', 'red');**
+
+$()는 jQuery의 함수이다. 이 함수의 인자로 CSS 선택자(li)를 전달하면 jQuery 객체라는 것을 리턴한다. 이 객체는 선택자에 해당하는 엘리먼트를 제어하는 다양한 메소드를 가지고 있다. 위의 그림에서 css는 선택자에 해당하는 객체들의 style에 color:red로 변경한다.
+
+**jquery 사용 예제**
+
+아래는 DOM을 이용했을 때와 jQuery를 이용했을 때를 비교한 것이다. 아래 코드는 복잡하다. 실행결과만 확인하자.
+
+```
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+    #demo{width:200px;float: left; margin-top:120px;}
+    #execute{float: left; margin:0; font-size:0.9em;}
+    #execute{padding-left: 5px}
+    #execute li{list-style: none}
+    #execute pre{border:1px solid gray; padding:10px;}
+    </style>
+</head>
+<body>
+<ul id="demo">
+    <li class="active">HTML</li>
+    <li id="active">CSS</li>
+    <li class="active">JavaScript</li>
+</ul>
+<ul id="execute">
+    <li>
+        <pre>
+var lis = document.getElementsByTagName('li');
+for(var i=0; i&lt;lis.length; i++){
+    lis[i].style.color='red';
+</pre>
+        <pre>
+$('li').css('color', 'red')     </pre>
+        <input type="button" value="execute" onclick="$('li').css('color', 'red')" />
+    </li>
+    <li>
+        <pre>
+var lis = document.getElementsByClassName('active');
+for(var i=0; i &lt; lis.length; i++){
+    lis[i].style.color='red';
+}</pre>
+        <pre>
+$('.active').css('color', 'red')</pre>
+        <input type="button" value="execute" onclick="$('.active').css('color', 'red')" />
+    </li>
+    <li>
+        <pre>
+var li = document.getElementById('active');
+li.style.color='red';
+li.style.textDecoration='underline';</pre>
+        <pre>
+$('$active').css('color', 'red').css('textDecoration', 'underline');
+        </pre>
+        <input type="button" value="execute" onclick="$('#active').css('color', 'red').css('textDecoration', 'underline')" />
+    </li>
+</ul>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+</body>
+</html>
+```
