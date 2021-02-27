@@ -809,3 +809,126 @@ $('$active').css('color', 'red').css('textDecoration', 'underline');
 </body>
 </html>
 ```
+
+<br>
+
+### **HTMLElement**
+
+---
+
+getElement\* 메소드를 통해서 원하는 객체를 조회했다면 이 객체들을 대상으로 구체적인 작업을 처리해야 한다. 이를 위해서는 획득한 객체가 무엇인지 알아야 한다. 그래야 적절한 메소드나 프로퍼티를 사용할 수 있다.
+
+아래 코드는 getElement\*의 리턴 값을 보여준다.
+
+```
+<ul>
+    <li>HTML</li>
+    <li>CSS</li>
+    <li id="active">JavaScript</li>
+</ul>
+<script>
+    var li = document.getElementById('active');
+    console.log(li.constructor.name);
+    var lis = document.getElementsByTagName('li');
+    console.log(lis.constructor.name);
+</script>
+
+// HTMLLIElement
+// HTMLCollection
+```
+
+이것을 통해서 알 수 있는 것은 아래와 같다.
+
+- document.getElementById : 리턴 데이터 타입은 HTMLLIELement
+- document.getElementsByTagName : 리턴 데이터 타입은 HTMLCollection
+
+즉 실행결과가 하나인 경우 HTMLLIELement, 복수인 경우 HTMLCollection을 리턴하고 있다.
+
+<br>
+
+실행결과가 하나인 엘리먼트들을 좀 더 살펴보자.
+
+```
+<a id="anchor" href="http://opentutorials.org">opentutorials</a>
+<ul>
+    <li>HTML</li>
+    <li>CSS</li>
+    <li id="list">JavaScript</li>
+</ul>
+<input type="button" id="button" value="button" />
+<script>
+    var target = document.getElementById('list');
+    console.log(target.constructor.name);
+
+    var target = document.getElementById('anchor');
+    console.log(target.constructor.name);
+
+    var target = document.getElementById('button');
+    console.log(target.constructor.name);
+
+</script>
+
+// HTMLLIElement
+// HTMLAnchorElement
+// HTMLInputElement
+```
+
+이를 통해서 알 수 있는 것은 엘리먼트의 종류에 따라서 리턴되는 객체가 조금씩 다르다는 것이다. 각각의 객체의 차이점을 알아보자.
+
+HTMLLIElement를 보자.
+
+```
+interface HTMLLIElement : HTMLElement {
+           attribute DOMString       type;
+           attribute long            value;
+};
+```
+
+다음은 HTMLAnchorElement이다.
+
+```
+interface HTMLAnchorElement : HTMLElement {
+           attribute DOMString       accessKey;
+           attribute DOMString       charset;
+           attribute DOMString       coords;
+           attribute DOMString       href;
+           attribute DOMString       hreflang;
+           attribute DOMString       name;
+           attribute DOMString       rel;
+           attribute DOMString       rev;
+           attribute DOMString       shape;
+           attribute long            tabIndex;
+           attribute DOMString       target;
+           attribute DOMString       type;
+  void               blur();
+  void               focus();
+};
+```
+
+즉 엘리먼트 객체에 따라서 프로퍼티가 다르다는 것을 알 수 있다. 하지만 모든 엘리먼트들은 HTMLElement를 상속 받고 있다.
+
+interface HTMLLIElement : HTMLElement {
+
+interface HTMLAnchorElement : HTMLElement {
+
+<br>
+
+HTMLElement는 아래와 같다.
+
+```
+interface HTMLElement : Element {
+           attribute DOMString       id;
+           attribute DOMString       title;
+           attribute DOMString       lang;
+           attribute DOMString       dir;
+           attribute DOMString       className;
+};
+```
+
+**DOM Tree**
+
+모든 엘리먼트는 HTMLElement의 자식이다. 따라서 HTMLElement의 프로퍼티를 똑같이 가지고 있다. 동시에 엘리먼트의 성격에 따라서 자신만의 프로퍼티를 가지고 있는데 이것은 엘리먼트의 성격에 따라서 달라진다. HTMLElement는 Element의 자식이고 Element는 Node의 자식이다. Node는 Object의 자식이다. 이러한 관계를 DOM Tree라고 한다.
+
+이러한 관계를 이해하지 못하면 필요한 API를 찾아내는 것이 어렵거나 몹시 혼란스러울 것이다. 다행인 것은 jQuery와 같은 라이브러리를 이용한다면 이러한 관계를 몰라도 된다. 혹시 이해가 안된다고 너무 상심하지 말자.
+
+<br>
