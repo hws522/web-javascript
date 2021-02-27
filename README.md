@@ -725,7 +725,7 @@ jQuery를 사용하기 위해서는 jQuery를 HTML로 로드해야 한다. 아�
 
 결과는 Body 태그 아래에 `<h1>Hello world</h1>` 코드가 만들어진다.
 
-아래와 같이 `jQuery( document ).ready(function( $ ) {}`로 감싸는 것이 이상적이다.
+아래와 같이 `jQuery( document ).ready(function( $ ) {...})`로 감싸는 것이 이상적이다.
 
 ```
 jQuery( document ).ready(function( $ ) {
