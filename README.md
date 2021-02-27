@@ -932,3 +932,38 @@ interface HTMLElement : Element {
 이러한 관계를 이해하지 못하면 필요한 API를 찾아내는 것이 어렵거나 몹시 혼란스러울 것이다. 다행인 것은 jQuery와 같은 라이브러리를 이용한다면 이러한 관계를 몰라도 된다. 혹시 이해가 안된다고 너무 상심하지 말자.
 
 <br>
+
+### **HTMLCollection**
+
+---
+
+HTMLCollection은 리턴 결과가 복수인 경우에 사용하게 되는 객체다. 유사배열로 배열과 비슷한 사용방법을 가지고 있지만 배열은 아니다.
+
+HTMLCollection의 목록은 실시간으로 변경된다. 아래 코드를 보자.
+
+```
+<!DOCTYPE html>
+<html>
+<body>
+<ul>
+    <li>HTML</li>
+    <li>CSS</li>
+    <li id="active">JavaScript</li>
+</ul>
+<script>
+console.group('before');
+var lis = document.getElementsByTagName('li');
+for(var i = 0; i < lis.length; i++){
+    console.log(lis[i]);
+}
+console.groupEnd();
+console.group('after');
+lis[1].parentNode.removeChild(lis[1]);
+for(var i = 0; i < lis.length; i++){
+    console.log(lis[i]);
+}
+console.groupEnd();
+</script>
+</body>
+</html>
+```
