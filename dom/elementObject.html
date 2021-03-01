@@ -40,7 +40,7 @@
       active.className += " readed";
     </script> -->
 
-    <ul>
+    <!-- <ul>
       <li>html</li>
       <li>css</li>
       <li id="active" class="important current">JavaScript</li>
@@ -73,6 +73,35 @@
       type="button"
       value="토글"
       onclick="active.classList.toggle('current');"
-    />
+    /> -->
+
+    <ul>
+      <li class="marked">html</li>
+      <li>css</li>
+      <li id="active">
+        JavaScript
+        <ul>
+          <li>JavaScript Core</li>
+          <li class="marked">DOM</li>
+          <li class="marked">BOM</li>
+        </ul>
+      </li>
+    </ul>
+    <script>
+      var list = document.getElementsByClassName("marked");
+      console.group("document");
+      for (var i = 0; i < list.length; i++) {
+        console.log(list[i].textContent);
+      }
+      console.groupEnd();
+
+      console.group("active");
+      var active = document.getElementById("active");
+      var list = active.getElementsByClassName("marked");
+      for (var i = 0; i < list.length; i++) {
+        console.log(list[i].textContent);
+      }
+      console.groupEnd();
+    </script>
   </body>
 </html>
