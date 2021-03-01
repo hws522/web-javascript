@@ -674,7 +674,7 @@ css 선택자의 문법을 이용해서 객체를 조회할수도 있다.
 
 querySelector과 기본적인 동작방법은 같지만 모든 객체를 조회한다는 점이 다르다.
 
-```
+```html
 <!DOCTYPE html>
 <html>
 <body>
@@ -709,7 +709,7 @@ jQuery는 DOM을 내부에 감추고 보다 쉽게 웹페이지를 조작할 수
 
 jQuery를 사용하기 위해서는 jQuery를 HTML로 로드해야 한다. 아래는 jQuery를 로드하는 방법이다.
 
-```
+```html
 <!DOCTYPE html>
 <html>
 <body>
@@ -755,7 +755,7 @@ $()는 jQuery의 함수이다. 이 함수의 인자로 CSS 선택자(li)를 전�
 
 아래는 DOM을 이용했을 때와 jQuery를 이용했을 때를 비교한 것이다. 아래 코드는 복잡하다. 실행결과만 확인하자.
 
-```
+```html
 <!DOCTYPE html>
 <html>
 <head>
@@ -820,21 +820,20 @@ getElement\* 메소드를 통해서 원하는 객체를 조회했다면 이 객�
 
 아래 코드는 getElement\*의 리턴 값을 보여준다.
 
-```
+```html
 <ul>
-    <li>HTML</li>
-    <li>CSS</li>
-    <li id="active">JavaScript</li>
+  <li>HTML</li>
+  <li>CSS</li>
+  <li id="active">JavaScript</li>
 </ul>
 <script>
-    var li = document.getElementById('active');
-    console.log(li.constructor.name);
-    var lis = document.getElementsByTagName('li');
-    console.log(lis.constructor.name);
+  var li = document.getElementById("active");
+  console.log(li.constructor.name);
+  var lis = document.getElementsByTagName("li");
+  console.log(lis.constructor.name);
 </script>
 
-// HTMLLIElement
-// HTMLCollection
+// HTMLLIElement // HTMLCollection
 ```
 
 이것을 통해서 알 수 있는 것은 아래와 같다.
@@ -848,28 +847,27 @@ getElement\* 메소드를 통해서 원하는 객체를 조회했다면 이 객�
 
 실행결과가 하나인 엘리먼트들을 좀 더 살펴보자.
 
-```
+```html
 <a id="anchor" href="http://opentutorials.org">opentutorials</a>
 <ul>
-    <li>HTML</li>
-    <li>CSS</li>
-    <li id="list">JavaScript</li>
+  <li>HTML</li>
+  <li>CSS</li>
+  <li id="list">JavaScript</li>
 </ul>
 <input type="button" id="button" value="button" />
 <script>
-    var target = document.getElementById('list');
-    console.log(target.constructor.name);
+  var target = document.getElementById("list");
+  console.log(target.constructor.name);
 
-    var target = document.getElementById('anchor');
-    console.log(target.constructor.name);
+  var target = document.getElementById("anchor");
+  console.log(target.constructor.name);
 
-    var target = document.getElementById('button');
-    console.log(target.constructor.name);
-
+  var target = document.getElementById("button");
+  console.log(target.constructor.name);
 </script>
 
-// HTMLLIElement
-// HTMLAnchorElement
+// HTMLLIElement 
+// HTMLAnchorElement 
 // HTMLInputElement
 ```
 
@@ -917,11 +915,11 @@ HTMLElement는 아래와 같다.
 
 ```
 interface HTMLElement : Element {
-           attribute DOMString       id;
-           attribute DOMString       title;
-           attribute DOMString       lang;
-           attribute DOMString       dir;
-           attribute DOMString       className;
+    attribute DOMString id;
+    attribute DOMString title;
+    attribute DOMString lang;
+    attribute DOMString dir;
+    attribute DOMString className;
 };
 ```
 
@@ -941,30 +939,30 @@ HTMLCollection은 리턴 결과가 복수인 경우에 사용하게 되는 객�
 
 HTMLCollection의 목록은 실시간으로 변경된다. 아래 코드를 보자.
 
-```
+```html
 <!DOCTYPE html>
 <html>
-<body>
-<ul>
-    <li>HTML</li>
-    <li>CSS</li>
-    <li id="active">JavaScript</li>
-</ul>
-<script>
-console.group('before');
-var lis = document.getElementsByTagName('li');
-for(var i = 0; i < lis.length; i++){
-    console.log(lis[i]);
-}
-console.groupEnd();
-console.group('after');
-lis[1].parentNode.removeChild(lis[1]);
-for(var i = 0; i < lis.length; i++){
-    console.log(lis[i]);
-}
-console.groupEnd();
-</script>
-</body>
+  <body>
+    <ul>
+      <li>HTML</li>
+      <li>CSS</li>
+      <li id="active">JavaScript</li>
+    </ul>
+    <script>
+      console.group("before");
+      var lis = document.getElementsByTagName("li");
+      for (var i = 0; i < lis.length; i++) {
+        console.log(lis[i]);
+      }
+      console.groupEnd();
+      console.group("after");
+      lis[1].parentNode.removeChild(lis[1]);
+      for (var i = 0; i < lis.length; i++) {
+        console.log(lis[i]);
+      }
+      console.groupEnd();
+    </script>
+  </body>
 </html>
 ```
 
@@ -990,22 +988,24 @@ chaining이란 선택된 엘리먼트에 대해서 연속적으로 작업을 처
 
 jQuery 객체에는 조회된 엘리먼트가 담겨 있다. jQuery 객체는 일종의 유사배열의 형태로 조회된 엘리먼트를 가지고 있기 때문에 배열처럼 사용해서 엘리먼트를 가져올 수 있다.
 
-```
+
+```html
 <ul>
-    <li>html</li>
-    <li>css</li>
-    <li>JavaScript</li>
+  <li>html</li>
+  <li>css</li>
+  <li>JavaScript</li>
 </ul>
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 <script>
-    console.log($('li').length);
-    console.log($('li')[0]);
-    var li = $('li');
-    for(var i=0; i<li.length; i++){
-        console.log(li[i]);
-    }
+  console.log($("li").length);
+  console.log($("li")[0]);
+  var li = $("li");
+  for (var i = 0; i < li.length; i++) {
+    console.log(li[i]);
+  }
 </script>
 ```
+
 
 한가지 주의할 것은 li[i]의 값은 해당 엘리먼트에 대한 jQuery 객체가 아니라 DOM 객체라는 것이다. 따라서 jQuery의 기능을 이용해서 이 객체를 제어하려면 jQuery 함수를 이용해야 한다.
 
@@ -1017,19 +1017,19 @@ for(var i=0; i<li.length; i++){
 
 아래와 같은 방법으로 조회된 결과를 열람할수도 있다.
 
-```
+```html
 <ul>
-    <li>html</li>
-    <li>css</li>
-    <li>JavaScript</li>
+  <li>html</li>
+  <li>css</li>
+  <li>JavaScript</li>
 </ul>
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 <script>
-    var li = $('li');
-    li.map(function(index, elem){
-        console.log(index, elem);
-        $(elem).css('color', 'red');
-    })
+  var li = $("li");
+  li.map(function (index, elem) {
+    console.log(index, elem);
+    $(elem).css("color", "red");
+  });
 </script>
 ```
 
@@ -1038,3 +1038,38 @@ map은 jQuery 객체의 엘리먼트를 하나씩 순회한다. 이 때 첫번�
 **jQuery 객체 API**
 
 제어할 대상을 선택한 후에는 대상에 대한 연산을 해야한다. .css와 .attr은 jQuery 객체가 가지고 있는 메소드 중의 하나인데, jQuery는 그 외에도 많은 API를 제공하고 있다. 이에 대한 내용은 jQuery API를 참고하자.
+
+<br>
+
+### **Element 객체**
+
+---
+
+Element 객체는 엘리먼트를 추상화한 객체다. HTMLElement 객체와의 관계를 이해하기 위해서는 DOM의 취지에 대한 이해가 선행되야 한다. DOM은 HTML만을 제어하기 위한 모델이 아니다. HTML이나 XML, SVG, XUL과 같이 마크업 형태의 언어를 제어하기 위한 규격이기 때문에 Element는 마크업 언어의 일반적인 규격에 대한 속성을 정의하고 있고, 각각의 구체적인 언어(HTML,XML,SVG)를 위한 기능은 HTMLElement, SVGElement, XULElement와 같은 객체를 통해서 추가해서 사용하고 있다.
+
+
+**주요기능**
+
+식별자 : 문서내에서 특정한 엘리먼트를 식별하기 위한 용도로 사용되는 API
+
+- Element.classList
+- Element.className
+- Element.id
+- Element.tagName
+
+조회 : 엘리먼트의 하위 엘리먼트를 조회하는 API
+
+- Element.getElementsByClassName
+- Element.getElementsByTagName
+- Element.querySelector
+- Element.querySelectorAll
+
+속성 : 엘리먼트의 속성을 알아내고 변경하는 API
+
+- Element.getAttribute(name)
+- Element.setAttribute(name, value)
+- Element.hasAttribute(name);
+- Element.removeAttribute(name);
+
+<br>
+
