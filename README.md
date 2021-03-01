@@ -1310,6 +1310,94 @@ $('#t2').prop('class', 'current');
 </script>
 ```
 
+<br>
+
+### **jQuery 조회 범위 제한**
+---
+
+이전 수업에서 Element 객체에서 getElementsBy* 메소드를 실행하면 조회의 범위가 그 객체의 하위 엘리먼트로 제한된다는 것을 알아봤다. jQuery에서는 어떻게 이러한 작업을 할 수 있을까?
+
+<br>
+
+**selector context**
+
+가장 간편한 방법은 조회할 때 조회 범위를 제한하는 것이다. 그 제한된 범위를 jQuery에서는 selector context라고 한다.
+
+```html
+<ul>
+    <li class="marked">html</li>
+    <li>css</li>
+    <li id="active">JavaScript
+        <ul>
+            <li>JavaScript Core</li>
+            <li class="marked">DOM</li>
+            <li class="marked">BOM</li>
+        </ul>
+    </li>
+</ul>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script>
+    $( ".marked", "#active").css( "background-color", "red" );
+</script>
+```
+
+실행결과
+
+```html
+<ul>
+    <li class="marked">html</li>
+    <li>css</li>
+    <li id="active">JavaScript
+        <ul>
+            <li>JavaScript Core</li>
+            <li class="marked" style="background-color: red;">DOM</li>
+            <li class="marked" style="background-color: red;">BOM</li>
+        </ul>
+    </li>
+</ul>
+```
+
+선택자를 아래처럼 작성해도 결과가 같다.
+
+```
+$( "#active .marked").css( "background-color", "red" );
+```
+
+**find**
+
+find는 jQuery 객체 내에서 엘리먼트를 조회하는 기능을 제공한다. 아래의 코드는 위의 예제와 효과가 같다.
+
+```
+$( "#active").find('.marked').css( "background-color", "red" );
+```
+
+
+find를 쓰는 이유는 체인을 끊지 않고 작업의 대상을 변경하고 싶을 때 사용한다. 기본 예제를 아래와 같이 변경해보자.
+
+```
+$('#active').css('color','blue').find('.marked').css( "background-color", "red" );
+```
+
+실행결과는 아래와 같다.
+
+```html
+<ul>
+    <li class="marked">html</li>
+    <li>css</li>
+    <li id="active" style="color: blue;">JavaScript
+        <ul>
+            <li>JavaScript Core</li>
+            <li class="marked" style="background-color: red;">DOM</li>
+            <li class="marked" style="background-color: red;">BOM</li>
+        </ul>
+    </li>
+</ul>
+```
+즉 li.item-li 엘리먼트에 해당하는 모든 엘리먼트의 전경색을 파란색으로 변경한 후에 li 엘리먼트만을 조회해서 배경색을 붉은색으로 지정하고 있다.  
+
+`find를 너무 복잡하게 사용하면 코드를 유지보수하기 어렵게 된다. `
+
+
 
 
 
