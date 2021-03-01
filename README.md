@@ -1073,3 +1073,90 @@ Element 객체는 엘리먼트를 추상화한 객체다. HTMLElement 객체와�
 
 <br>
 
+### **식별자 API**
+---
+
+
+엘리먼트를 제어하기 위해서는 그 엘리먼트를 조회하기 위한 식별자가 필요하다. 
+
+HTML에서 엘리먼트의 이름과 id 그리고 class는 식별자로 사용된다. 식별자 API는 이 식별자를 가져오고 변경하는 역할을 한다.
+
+**Element.tagName**
+
+해당 엘리먼트의 태그 이름을 알아낸다. 태그 이름을 변경하지는 못한다. 
+
+```html
+<ul>
+    <li>html</li>
+    <li>css</li>
+    <li id="active" class="important current">JavaScript</li>
+</ul>
+<script>
+console.log(document.getElementById('active').tagName)
+</script>
+```
+
+**Element.id**
+
+문서에서 id는 단 하나만 등장할 수 있는 식별자다. 아래 예제는 id의 값을 읽고 변경하는 방법을 보여준다.
+
+```html
+<ul>
+    <li>html</li>
+    <li>css</li>
+    <li id="active">JavaScript</li>
+</ul>
+<script>
+var active = document.getElementById('active');
+console.log(active.id);
+active.id = 'deactive';
+console.log(active.id);
+</script>
+```
+
+**Element.className**
+
+클래스는 여러개의 엘리먼트를 그룹핑할 때 사용한다.
+
+```html
+<ul>
+    <li>html</li>
+    <li>css</li>
+    <li id="active">JavaScript</li>
+</ul>
+<script>
+var active = document.getElementById('active');
+// class 값을 변경할 때는 프로퍼티의 이름으로 className을 사용한다.
+active.className = "important current";
+console.log(active.className);
+// 클래스를 추가할 때는 아래와 같이 문자열의 더한다.
+active.className += " readed"
+</script>
+```
+
+**Element.classList**
+
+className에 비해서 훨씬 편리한 사용성을 제공한다.
+
+```html
+<ul>
+    <li>html</li>
+    <li>css</li>
+    <li id="active" class="important current">JavaScript</li>
+</ul>
+<script>
+function loop(){
+    for(var i=0; i<active.classList.length; i++){
+        console.log(i, active.classList[i]);
+    }
+}
+// 클래스를 추가
+</script>
+<input type="button" value="DOMTokenList" onclick="console.log(active.classList);" />
+<input type="button" value="조회" onclick="loop();" />
+<input type="button" value="추가" onclick="active.classList.add('marked');" />
+<input type="button" value="제거" onclick="active.classList.remove('important');" />
+<input type="button" value="토글" onclick="active.classList.toggle('current');" />
+```
+
+<br>
