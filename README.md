@@ -1583,6 +1583,111 @@ traverse(document.getElementById('start'), function(elem){
 </html>
 ```
 
+<br>
+
+### **Node 변경 API**
+---
+
+노드를 추가, 제거, 변경하는 방법을 알아보자.
+
+<br>
+
+**노드 추가**
+
+노드의 추가와 관련된 API들은 아래와 같다.
+
+
+- appendChild(child)
+
+  노드의 마지막 자식으로 주어진 엘리먼트 추가.
+
+- insertBefore(newElement, referenceElement)
+
+  appendChild와 동작방법은 같으나 두번째 인자로 엘리먼트를 전달 했을 때 이것 앞에 엘리먼트가 추가된다.
+
+노드를 추가하기 위해서는 추가할 엘리먼트를 생성해야 하는데 이것은 document 객체의 기능이다. 아래 API는 노드를 생성하는 API이다.
+
+- document.createElement(tagname)
+
+  엘리먼트 노드를 추가한다.
+
+- document.createTextNode(data)
+
+  텍스트 노드를 추가한다. 
+
+
+```html
+<ul id="target">
+    <li>HTML</li>
+    <li>CSS</li>
+</ul>
+<input type="button" onclick="callAppendChild();" value="appendChild()" />
+<input type="button" onclick="callInsertBefore();" value="insertBefore()" />
+<script>
+    function callAppendChild(){
+        var target = document.getElementById('target');
+        var li = document.createElement('li');
+        var text = document.createTextNode('JavaScript');
+        li.appendChild(text);
+        target.appendChild(li);
+    }
+ 
+    function callInsertBefore(){
+        var target = document.getElementById('target');
+        var li = document.createElement('li');
+        var text = document.createTextNode('jQuery');
+        li.appendChild(text);
+        target.insertBefore(li, target.firstChild);
+    }
+</script>
+```
+
+**노드 제거**
+
+노드 제거를 위해서는 아래 API를 사용한다. 이 때 메소드는 삭제 대상의 부모 노드 객체의 것을 실행해야 한다는 점에 유의하자.
+
+- removeChild(child)
+
+```html
+<ul>
+    <li>HTML</li>
+    <li>CSS</li>
+    <li id="target">JavaScript</li>
+</ul>
+<input type="button" onclick="callRemoveChild();" value="removeChild()" />
+<script>
+    function callRemoveChild(){
+        var target = document.getElementById('target');
+        target.parentNode.removeChild(target);
+    }
+</script>
+```
+
+
+**노드 변경**
+
+노드 바꾸기에는 아래 API가 사용된다.
+
+- replaceChild(newChild, oldChild)
+
+```html
+<ul>
+    <li>HTML</li>
+    <li>CSS</li>
+    <li id="target">JavaScript</li>
+</ul>
+<input type="button" onclick="callReplaceChild();" value="replaceChild()" />
+<script>
+    function callReplaceChild(){
+        var a = document.createElement('a');
+        a.setAttribute('href', 'http://opentutorials.org/module/904/6701');
+        a.appendChild(document.createTextNode('Web browser JavaScript'));
+ 
+        var target = document.getElementById('target');
+        target.replaceChild(a,target.firstChild);
+    }
+</script>
+```
 
 
 
