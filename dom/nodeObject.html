@@ -17,7 +17,7 @@
         </ul>
       </li>
     </ul>
-    <script>
+    <!-- <script>
       var s = document.getElementById("start");
       console.log(1, s.firstChild); // #text
       var ul = s.firstChild.nextSibling;
@@ -27,6 +27,22 @@
       console.log(5, ul.childNodes); //text, li, text, li, text, li, text
       console.log(6, ul.childNodes[1]); // li(html)
       console.log(7, ul.parentNode); // body
+    </script> -->
+
+    <script>
+      function traverse(target, callback) {
+        if (target.nodeType === 1) {
+          //if(target.nodeName === 'A')
+          callback(target);
+          var c = target.childNodes;
+          for (var i = 0; i < c.length; i++) {
+            traverse(c[i], callback);
+          }
+        }
+      }
+      traverse(document.getElementById("start"), function (elem) {
+        console.log(elem);
+      });
     </script>
   </body>
 </html>
