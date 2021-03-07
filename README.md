@@ -1938,6 +1938,37 @@ innerHTML, outerHTML과 다르게 이 API들은 값을 읽을 때는 HTML 코드
 
 <br>
 
+### **Document 객체**
+---
+
+Document 객체는 DOM의 스팩이고 이것이 웹브라우저에서는 HTMLDocument 객체로 사용된다. HTMLDocument 객체는 문서 전체를 대표하는 객체라고 할 수 있다. 아래 코드는 이를 보여준다.
+
+```html
+<script>
+//document 객체는 window 객체의 소속이다.
+console.log(window.document);
+//document 객체의 자식으로는 Doctype과 html이 있다. 
+console.log(window.document.childNodes[0]);
+console.log(window.document.childNodes[1]);
+</script>
+```
+
+**노드 생성 API**
+
+document 객체의 주요 임무는 새로운 노드를 생성해주는 역할이다.
+
+- createElement()
+
+- createTextNode()
+
+**문서 정보 API**
+
+- title
+- URL
+- referrer
+- lastModified
+
+<br>
 
 
 
