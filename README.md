@@ -1970,6 +1970,61 @@ document 객체의 주요 임무는 새로운 노드를 생성해주는 역할�
 
 <br>
 
+### **Text 객체**
+---
+
+텍스트 객체는 텍스트 노드에 대한 DOM 객체로 CharacterData를 상속 받는다. 
+
+아래는 텍스트 노드를 찾는 예제다. 주목할 것은 DOM에서는 공백이나 줄바꿈도 텍스트 노드라는 점이다.
+
+```html
+<p id="target1"><span>Hello world</span></p>
+<p id="target2">
+    <span>Hello world</span>
+</p>
+<script>
+var t1 = document.getElementById('target1').firstChild;
+var t2 = document.getElementById('target2').firstChild;
+ 
+console.log(t1.firstChild.nodeValue);
+try{
+    console.log(t2.firstChild.nodeValue);   
+} catch(e){
+    console.log(e);
+}
+console.log(t2.nextSibling.firstChild.nodeValue);
+ 
+</script>
+```
+
+실행결과
+
+```html
+Hello world
+TypeError {stack: (...), message: "Cannot read property 'nodeValue' of null"}
+Hello world
+```
+
+**주요기능**
+
+**값** : 텍스트 노드의 값을 가져오는 API
+
+- data
+- nodeValue
+
+**조작** 
+
+- appendData()
+- deleteData()
+- insertData()
+- replaceData()
+- subStringData()
+
+**생성**
+
+- document.createTextNode()
+
+<br>
 
 
 
