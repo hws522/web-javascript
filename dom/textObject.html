@@ -5,7 +5,7 @@
     <title></title>
   </head>
   <body>
-    <p id="target1"><span>Hello world</span></p>
+    <!-- <p id="target1"><span>Hello world</span></p>
     <p id="target2">
       <span>Hello world</span>
     </p>
@@ -20,6 +20,17 @@
         console.log(e);
       }
       console.log(t2.nextSibling.firstChild.nodeValue);
+    </script> -->
+
+    <ul>
+      <li id="target">html</li>
+      <li>css</li>
+      <li>JavaScript</li>
+    </ul>
+    <script>
+      var t = document.getElementById("target").firstChild;
+      console.log(t.nodeValue);
+      console.log(t.data);
     </script>
   </body>
 </html>

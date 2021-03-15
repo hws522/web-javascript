@@ -2026,5 +2026,26 @@ Hello world
 
 <br>
 
+### **값 API**
+---
+
+텍스트 노드는 DOM에서 실질적인 데이터가 저장되는 객체이다. 따라서 텍스트 노드에는 값과 관련된 여러 기능들이 있는데 이번 시간에는 값을 가져오는 두개의 API를 알아본다.
+
+ - nodeValue
+ - data
+
+```html
+<ul>
+    <li id="target">html</li> 
+    <li>css</li>
+    <li>JavaScript</li>
+</ul>
+<script>
+    var t = document.getElementById('target').firstChild;
+    console.log(t.nodeValue);
+    console.log(t.data);
+</script>
+```
+
 
 
