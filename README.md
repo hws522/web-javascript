@@ -2113,3 +2113,83 @@ Hello world
 
 <br>
 
+### **문서의 기하학적 특성**
+---
+<br>
+
+**요소의 크기와 위치**
+
+엘리먼트의 크기를 알아내는 방법을 살펴보자.
+
+```html
+<style>
+    body{
+        padding:0;
+        margin:0;
+    }
+    #target{
+        width:100px;
+        height:100px;
+        border:50px solid #1065e6;
+        padding:50px;
+        margin:50px;
+    }
+</style>
+<div id="target">
+    Coding
+</div>
+<script>
+var t = document.getElementById('target');
+console.log(t.getBoundingClientRect());
+</script>
+```
+즉 엘리먼트의 테두리와 body 태그 사이의 거리가 50px이다. 그리고 테두리를 포함한 엘리먼트의 크기는 300px이다. 이 값을 알아내고 싶을 때 사용하는 API가 getBoundingClientRect이다. 
+
+엘리먼트의 크기와 위치를 알고 싶을 때는 getBoundingClientRect를 사용하면 된다는 것을 알 수 있다. 
+
+만약 엘리먼트가 중첩되어 있다면 어떻게 될까?
+
+```html
+<style>
+    body{
+        padding:0;
+        margin:0;
+    }
+    div{
+        border:50px solid #1065e6;
+        padding:50px;
+        margin:50px;
+    }
+    #target{
+        width:100px;
+        height:100px;
+    }
+</style>
+<div>
+    <div id="target">
+        Coding
+    </div>
+</div>
+<script>
+var t = document.getElementById('target');
+console.log(t.getBoundingClientRect());
+console.log(t.offsetParent);
+</script>
+```
+
+엘리먼트의 위치를 의미하는 top, right의 값을 통해서 기준이 그 부모가 아니라 body라는 것을 알 수 있다. 그리고 이를 명시적으로 확인할 수 있는 방법은 offsetParent 속성을 호출하는 것이다. 만약 부모 중 CSS position의 값이 static인 td, th, table 엘리먼트가 있다면 이 엘리먼트가 offsetParent가 된다. 
+
+테두리를 제외한 엘리먼트의 크기를 알고 싶다면  ClientWidth, ClientHeight를 사용한다.
+
+```html
+<script>
+var t = document.getElementById('target');
+console.log('clientWidth:', t.clientWidth, 'clientHeight:', t.clientHeight);
+</script>
+```
+
+<br>
+
+
+
+
