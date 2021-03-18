@@ -2190,6 +2190,102 @@ console.log('clientWidth:', t.clientWidth, 'clientHeight:', t.clientHeight);
 
 <br>
 
+**Viewport**
+
+요소의 위치를 생각할 때는 사실 조금 더 복잡해진다. 문서가 브라우저의 크기보다 큰 경우는 스크롤이 만들어지는데 스크롤에 따라서 위치의 값이 달라지기 때문이다. 이를 이해하기 위해서는 우선 viewport에 대한 이해가 선행되어야 한다.
 
 
+뷰포트는 문서의 내용 중 사용자에게 보여주는 영역을 의미한다. 이에 따라서 문서의 좌표가 있고 뷰포트의 좌표가 있다. 우리가 위에서 살펴본 getBoundingClientRect는 viewport의 좌표를 사용한다. 
 
+아래 예제를 실행해보면 1초에 한번씩 getBoundingClientRect의 top 속성과 window.pageYOffset의 값이 출력된다.
+
+```html
+<style>
+    body{
+        padding:0;
+        margin:0;
+    }
+    div{
+        border:50px solid #1065e6;
+        padding:50px;
+        margin:50px;
+    }
+    #target{
+        width:100px;
+        height:2000px;
+    }
+</style>
+    <div>
+        <div id="target">
+            Coding
+        </div>
+    </div>
+ 
+<script>
+var t = document.getElementById('target');
+setInterval(function(){
+    console.log('getBoundingClientRect : ', t.getBoundingClientRect().top, 'pageYOffset:', window.pageYOffset);
+}, 1000)
+</script>
+```
+
+이를 통해서 알 수 있는 것은 getBoundingClientRect의 값이 스크롤에 따라서 달라지는 뷰포트의 좌표를 사용하고 있다는 것이다. 또한 스크롤의 정도를 알고 싶을 때는 pageYOffset을 사용하면 된다는 것도 알 수 있다. 
+
+
+그럼 문서의 좌표를 알고 싶으면 어떻게 해야 하나? 뷰포트의 좌표에 스크롤된 정도를 더해서 알 수 있다. 아래와 같이 코드를 조금 수정했다.
+
+```html
+setInterval(function(){
+    console.log('getBoundingClientRect : ', t.getBoundingClientRect().top, 'pageYOffset:', window.pageYOffset, 'document y:', t.getBoundingClientRect().top+window.pageYOffset);
+}, 1000)
+```
+
+<br>
+
+**스크롤**
+
+그럼 문서의 스크롤 값을 변경하는 것은 어떻게 하는 것일까? scrollLeft와 scrollTop 프로퍼티를 이용하면 된다. 
+
+```html
+<style>
+    body{
+        padding:0;
+        margin:0;
+    }
+    div{
+        border:50px solid #1065e6;
+        padding:50px;
+        margin:50px;
+    }
+    #target{
+        width:100px;
+        height:2000px;
+    }
+</style>
+<input type="button" id="scrollBtn" value="scroll(0, 1000)" />
+<script>
+    document.getElementById('scrollBtn').addEventListener('click', function(){
+        window.scrollTo(0, 1000);
+    })
+</script>
+<div>
+    <div id="target">
+        Coding
+    </div>
+</div>
+```
+
+<br>
+
+**스크린의 크기**
+
+스크린의 크기는 모니터의 크기와 브라우저 뷰포트의 크기가 있다. 이를 알아내는 방법은 아래와 같다. 
+
+```html
+<script>
+console.log('window.innerWidth:', window.innerWidth, 'window.innerHeight:', window.innerHeight);
+console.log('screen.width:', screen.width, 'screen.height:', screen.height);
+</script>
+```
+
+window.inner*은 뷰포트의 크기를 나타내고, screen.*은 스크린의 크기를 나타낸다.
