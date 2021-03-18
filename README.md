@@ -2226,7 +2226,9 @@ var t = document.getElementById('target');
 setInterval(function(){
     console.log('getBoundingClientRect : ', t.getBoundingClientRect().top, 'pageYOffset:', window.pageYOffset);
 }, 1000)
-</script>
+</script> 
+
+<!-- setInterval 은 첫번째 인자를 두번째 인자의 속도로 반복한다. -->
 ```
 
 이를 통해서 알 수 있는 것은 getBoundingClientRect의 값이 스크롤에 따라서 달라지는 뷰포트의 좌표를 사용하고 있다는 것이다. 또한 스크롤의 정도를 알고 싶을 때는 pageYOffset을 사용하면 된다는 것도 알 수 있다. 
