@@ -2294,7 +2294,8 @@ window.inner*은 뷰포트의 크기를 나타내고, screen.*은 사용자 모�
 
 <br>
 
-**이벤트**
+### **Event**
+---
 
 이벤트(event)는 어떤 사건을 의미한다. 브라우저에서의 사건이란 사용자가 클릭을 했을 '때', 스크롤을 했을 '때', 필드의 내용을 바꾸었을 '때'와 같은 것을 의미한다. 
 
@@ -2332,6 +2333,28 @@ https://developer.mozilla.org/en-US/docs/Web/Reference/Events
 **event handler**
 
 이벤트가 발생했을 때 동작하는 코드를 의미한다. 위의 예제에서는 alert(window.location)이 여기에 해당한다.
+
+<br>
+
+### **inline**
+---
+
+인라인(inline) 방식으로 이벤트를 등록하는 방법을 알아보자. 인라인 방식은 이벤트를 이벤트 대상의 태그 속성으로 지정하는 것이다. 다음은 버튼을 클릭했을 때 Hello world를 경고창으로 출력한다.
+
+```html
+<input type = "button" onclick="alert('Hello World');" value = "button" />
+```
+
+이벤트가 발생한 대상을 필요로하는 경우 this를 통해서 참조할 수 있다.
+
+```html
+<!--자기 자신을 참조하는 불편한 방법-->
+<input type="button" id="target" onclick="alert('Hello world, '+document.getElementById('target').value);" value="button" />
+<!--this를 통해서 간편하게 참조할 수 있다-->
+<input type="button" onclick="alert('Hello world, '+this.value);" value="button" />
+```
+
+인라인 방식은 태그에 이벤트가 포함되기 때문에 이벤트의 소재를 파악하는 것이 편리하다. 하지만 정보인 HTML과 제어인 JavaScript가 혼재된 형태이기 때문에 바람직한 방법이라고 할수는 없다. 
 
 <br>
 
