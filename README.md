@@ -2328,7 +2328,9 @@ target은 이벤트가 일어날 객체를 의미한다. 아래 코드에서 타
 
 https://developer.mozilla.org/en-US/docs/Web/Reference/Events
 
+
 **event handler**
+
 이벤트가 발생했을 때 동작하는 코드를 의미한다. 위의 예제에서는 alert(window.location)이 여기에 해당한다.
 
 <br>
