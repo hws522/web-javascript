@@ -2358,3 +2358,53 @@ https://developer.mozilla.org/en-US/docs/Web/Reference/Events
 
 <br>
 
+### **프로퍼티 리스너**
+---
+
+프로퍼티 리스너 방식은 이벤트 대상에 해당하는 객체의 프로퍼티로 이벤트를 등록하는 방식이다. 인라인 방식에 비해서 HTML과 JavaScript를 분리할 수 있다는 점에서 선호되는 방식이지만 뒤에서 배울 addEventListener 방식을 추천한다. 
+
+```html
+<input type="button" id="target" value="button" />
+<script>
+    var t = document.getElementById('target');
+    t.onclick = function(){
+        alert('Hello world');
+    }
+</script>
+```
+
+<br>
+
+**이벤트 객체**
+
+이벤트가 실행된 맥락의 정보가 필요할 때는 이벤트 객체를 사용한다. 이벤트 객체는 이벤트가 실행될 때 이벤트 핸들러의 인자로 전달된다. 
+
+```html
+<body>
+    <input type="button" id="target" value="button" />
+<script>
+    var t = document.getElementById('target');
+    t.onclick = function(event){
+        alert('Hello world, '+event.target.value)
+    }
+</script>
+```
+
+ie8 이하 버전에서는 이벤트 객체를 핸들러의 인자가 아니라 전역객체의 event 프로퍼티로 제공한다. 또한 target 프로퍼티도 지원하지 않는다. 아래는 이 문제를 해소하기 위한 코드다.
+
+```html
+<input type="button" id="target" value="button" />
+<script>
+    var t = document.getElementById('target');
+    t.onclick = function(event){
+        var event = event || window.event;
+        var target = event.target || event.srcElement;
+        alert('Hello world, '+target.value)
+    }
+</script>
+```
+
+<br>
+
+
+
